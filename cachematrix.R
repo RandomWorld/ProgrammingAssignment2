@@ -1,4 +1,11 @@
 makeCacheMatrix <- function(x = matrix()) {
+#Create a matrix. which is a list of
+#
+# 	setmatrix - Set matrix
+#	getmatrix - Get the matrix
+#	setsolve  - Set the inverse matrix
+#	get solve  - Get the inverse matrix
+
   m <- NULL
   setmatrix <- function(y) {
     x <<- y
@@ -12,13 +19,22 @@ makeCacheMatrix <- function(x = matrix()) {
        getsolve = getsolve)
 }
 
+###
+
+
 cacheSolve <- function(x, ...) {
+#This function calculate the inverse matrix of the "special matrix" created with the above
+#function. It checked if the inverse matrix has been created, 
+#if it has been created skips the computation
+
   m <- x$getmatrix()
+	# Check if exist the matrix
   if(!is.null(m)) {
     message("getting cached data")
     m
   }
   data <- x$getmatrix()
+#calculation
   m <- solve(data, ...)
   x$setsolve(m)
   m
